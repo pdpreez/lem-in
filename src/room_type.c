@@ -12,6 +12,16 @@
 
 #include "../includes/lem-in.h"
 
+void	is_comment(t_lemin *data)
+{
+	char *str;
+
+	str = (char *)data->args->content;
+	if (str[0] == '#'
+		&& (ft_strcmp("##start", str) || ft_strcmp("##end", str)))
+		data->args = data->args->next;
+}
+
 int		save_start(t_lemin *data)
 {
 	if (!data->args->next)

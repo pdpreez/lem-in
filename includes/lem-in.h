@@ -16,6 +16,13 @@
 #include <stdio.h> //REMOVE
 #include "../libft/libft.h"
 
+typedef struct		s_room
+{
+	char			*name;
+	int				room_num;
+	int				visited_flag;
+}					t_room;
+
 typedef struct		s_lemin
 {
 	int				ants;
@@ -31,6 +38,8 @@ int					is_room(char *str);
 int					start_or_end(t_lemin *data);
 char				*save_room_name(t_lemin *data);
 char				*room_check(t_lemin *data);
+void				save_room_list(t_lemin *data);
 void				init_struct(t_lemin *data);
+void				is_comment(t_lemin *data);
 
 #endif

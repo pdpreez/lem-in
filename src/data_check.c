@@ -6,7 +6,7 @@
 /*   By: ppreez <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 14:32:01 by ppreez            #+#    #+#             */
-/*   Updated: 2018/08/20 14:32:14 by ppreez           ###   ########.fr       */
+/*   Updated: 2018/08/22 09:57:39 by ppreez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int		ant_check(t_lemin *data)
 	}
 	else
 	{
-		//ft_debug(1, "Error: Invalid amount of ants", 'R');
+		ft_debug(1, "Error: Invalid amount of ants", 'R');
 		return (0);
 	}
 	return (1);
@@ -66,7 +66,7 @@ char	*save_room_name(t_lemin *data)
 	while (str[i] != ' ')
 		i++;
 	new = ft_strsub(str, 0, i);
-	free(str);
+	printf("New: %s\n", new);
 	return (new);
 }
 
@@ -81,7 +81,9 @@ char	*room_check(t_lemin *data)
 	if (is_room(str))
 	{
 		free(str);
-		str = save_room_name(data);
+		printf("room: %s\n", str);
+		save_room_list(data);
+
 	}
 	else
 	{
