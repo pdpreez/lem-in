@@ -18,7 +18,7 @@ int main(void)
 	t_lemin data;
 
 	init_struct(&data);
-	error_handler(&data);	
+	error_handler(&data);
 	while (!data.args)
 	{
 		dprintf(2, MAGENTA"%s\n"RESET, (char *)data.args->content);

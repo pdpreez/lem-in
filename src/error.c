@@ -17,8 +17,12 @@ void	save_room_list(t_lemin *data)
 	t_list	*start;
 	t_list	*temp;
 	t_room	*room;
-
+	char *str;
+	
+	str = save_room_name(data);
+	printf(RED"$$%s$$\n"RESET, str);	
 	start = data->rooms;
+	printf(YELLOW"room: %s\n"RESET, data->args->content);
 	room = (t_room *)ft_memalloc(sizeof(t_room));
 	temp = ft_lstnew(room, sizeof(t_room));
 	if (!data->rooms)
@@ -33,12 +37,8 @@ void	save_room_list(t_lemin *data)
 		ft_lstaddend(&data->rooms, temp);
 		data->rooms = data->rooms->next;
 	}
-	data->rooms = start;
-	char *str;
-
-	str = save_room_name(data);
-	printf(RED"$$%s$$\n"RESET, str);	
 	((t_room *)(data->rooms->content))->name = save_room_name(data);
+	data->rooms = start;
 }
 
 int		data_capture(t_lemin *data)
@@ -48,20 +48,25 @@ int		data_capture(t_lemin *data)
 	start = data->args;
 	while (data->args)
 	{
-		dprintf(2, MAGENTA"args: %s\n"RESET, data->args->content);
 		if (ant_check(data))
 		{
 			data->args = data->args->next;
 		}
 		while (data->args)
 		{
-			start_or_end(data);
+			if (start_or_end(data))
+				continue ;
 			is_comment(data);
 			room_check(data);
 			data->args = data->args->next;
 		}
 	}
-	
+	assign_room_num(data);
+	while (data->rooms)
+	{
+		dprintf(2, CYAN"\nROOM: %d\n"RESET, ROOM->number);
+		data->rooms = data->rooms->next;
+	}
 	dprintf(2, CYAN"\nSTART: %s\n"RESET, data->start);
 	dprintf(2, YELLOW"END: %s\n"RESET, data->end);
 	dprintf(2, GREEN"ANTS: %d\n"RESET, data->ants);

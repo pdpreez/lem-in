@@ -13,13 +13,14 @@
 #ifndef LEMIN_H
 # define LEMIN_H
 
-#include <stdio.h> //REMOVE
-#include "../libft/libft.h"
+# include <stdio.h> //REMOVE
+# include "../libft/libft.h"
+# define ROOM ((t_room *)(data->rooms->content))
 
 typedef struct		s_room
 {
 	char			*name;
-	int				room_num;
+	int				number;
 	int				visited_flag;
 }					t_room;
 
@@ -41,5 +42,6 @@ char				*room_check(t_lemin *data);
 void				save_room_list(t_lemin *data);
 void				init_struct(t_lemin *data);
 void				is_comment(t_lemin *data);
+void				assign_room_num(t_lemin *data);
 
 #endif

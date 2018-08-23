@@ -12,6 +12,22 @@
 
 #include "../includes/lem-in.h"
 
+void	assign_room_num(t_lemin *data)
+{
+	int	i;
+	t_list *start;
+
+	i = 1;
+	start = data->rooms;
+	while (data->rooms)
+	{
+		ROOM->number = i;
+		data->rooms = data->rooms->next;
+		i++;
+	}
+	data->rooms = start;
+}
+
 void	is_comment(t_lemin *data)
 {
 	char *str;
@@ -31,6 +47,7 @@ int		save_start(t_lemin *data)
 	}
 	data->args = data->args->next;
 	data->start = save_room_name(data);
+	data->args = data->args->next;
 	return (1);
 }
 
@@ -43,6 +60,7 @@ int		save_end(t_lemin *data)
 	}
 	data->args = data->args->next;
 	data->end = save_room_name(data);
+	data->args = data->args->next;
 	return (1);
 }
 

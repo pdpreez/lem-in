@@ -63,10 +63,9 @@ char	*save_room_name(t_lemin *data)
 
 	i = 0;
 	str = (char *)data->args->content;
-	while (str[i] != ' ')
+	while (str[i] != ' ' && str[i] != '\0')
 		i++;
 	new = ft_strsub(str, 0, i);
-	printf("New: %s\n", new);
 	return (new);
 }
 
@@ -77,18 +76,8 @@ char	*room_check(t_lemin *data)
 
 	i = 0;
 	str = (char *)data->args->content;
-	dprintf(2, CYAN"%s\n"RESET, str);
+	start_or_end(data);
 	if (is_room(str))
-	{
-		free(str);
-		printf("room: %s\n", str);
 		save_room_list(data);
-
-	}
-	else
-	{
-		ft_debug(1, "Error: Invalid room name", 'R');
-		return (NULL);
-	}
 	return (str);
 }
