@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   connection.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppreez <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/20 14:09:22 by ppreez            #+#    #+#             */
-/*   Updated: 2018/08/20 14:09:37 by ppreez           ###   ########.fr       */
+/*   Created: 2018/08/23 16:59:45 by ppreez            #+#    #+#             */
+/*   Updated: 2018/08/23 16:59:58 by ppreez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem-in.h"
 
-int		find_matrix_len(char **str)
+char	**is_connection(t_lemin *data)
 {
-	int	i;
+	char *str;
+	char **new;
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	str = (char *)data->args->content;
+	new = ft_strsplit(str, '-');
+	if (find_matrix_len(new) <= 1)
+		return (NULL);
+	return (new);
+}
+
+void	connetion_check(t_lemin *data)
+{
+	
 }

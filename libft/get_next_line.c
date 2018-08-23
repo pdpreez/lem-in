@@ -105,7 +105,10 @@ int				get_next_line(const int fd, char **line)
 	{
 		read_val = read(fd, buffer, BUFF_SIZE);
 		if (read_val <= 0)
+		{
+			free(*line);
 			return (read_val);
+		}
 		if (!(node->content = (void*)ft_memalloc(BUFF_SIZE + 1)))
 			return (-1);
 		ft_memmove(node->content, buffer, BUFF_SIZE);

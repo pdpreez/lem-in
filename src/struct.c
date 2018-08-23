@@ -17,4 +17,5 @@ void	init_struct(t_lemin *data)
 	data->ants = 0;
 	data->rooms = NULL;
 	data->args = NULL;
+	data->tab = NULL;
 }

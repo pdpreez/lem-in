@@ -17,7 +17,8 @@ OBJ_PATH = ./obj/
 INC_PATH = ./includes/
 LIB_PATH = ./libft/
 
-SRC_FILE = lem-in.c error.c struct.c data_check.c room_type.c
+SRC_FILE = lem-in.c error.c struct.c data_check.c room_type.c \
+			matrix.c connection.c utils.c
 
 OBJ_FILE = $(SRC_FILE:%.c=%.o)
 
