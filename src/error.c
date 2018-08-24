@@ -43,14 +43,13 @@ int		data_capture(t_lemin *data)
 
 	start = data->args;
 	if (ant_check(data))
-		//data->args = data->args->next;
+		data->args = data->args->next;
 	while (data->args)
 	{
 		if (start_or_end(data))
 			continue ;
 		is_comment(data);
 		room_check(data);
-		//connection_check(data);
 		data->args = data->args->next;
 	}
 	assign_room_num(data);
@@ -64,7 +63,7 @@ void	save_command(t_lemin *data, char *line)
 	t_list *start;
 
 	start = data->args;
-	temp = ft_lstnew(line, sizeof(char) * ft_strlen(line) + 1);
+	temp = ft_lstnew(line, ft_strlen(line) + 1);
 	if (!data->args)
 	{
 		data->args = temp;

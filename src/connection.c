@@ -24,6 +24,18 @@ char	**is_connection(t_lemin *data)
 	return (new);
 }
 
+void	clear_start(t_lemin *data)
+{
+	int x;
+
+	x = 0;
+	while (x < data->room_count)
+	{
+		data->matrix[x][0] = 0;
+		x++;
+	}
+}
+
 void	save_connection(t_lemin *data, char **new)
 {
 	int x;
@@ -31,20 +43,25 @@ void	save_connection(t_lemin *data, char **new)
 	
 	x = 0;
 	y = 0;
-	while (ft_strcmp(data->tab[x], new[0]))
+	while (x < data->room_count && ft_strcmp(data->tab[x], new[0]))
 		x++;
-	while (ft_strcmp(data->tab[y], new[1]))
+	while (y < data->room_count && ft_strcmp(data->tab[y], new[1]))
 		y++;
 	data->matrix[x][y] = 1;
 	data->matrix[y][x] = 1;
+	clear_start(data);
 }
 
 void	connection_check(t_lemin *data)
 {
+	int x;
+	int y;
 	char 	**new;
 
+	x = 0;
+	y = 0;
  	if ((new = is_connection(data)))
-	 {
-	 	save_connection(data, new);
-	 }
+	{
+		save_connection(data, new);
+	}
 }

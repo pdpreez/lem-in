@@ -22,6 +22,7 @@ void	assign_room_num(t_lemin *data)
 	while (data->rooms)
 	{
 		ROOM->number = i;
+		ROOM->visited_flag = 0;
 		data->rooms = data->rooms->next;
 		i++;
 	}

@@ -12,6 +12,19 @@
 
 #include "../includes/lem-in.h"
 
+void	reset_flags(t_lemin *data)
+{
+	t_list *start;
+
+	start = data->rooms;
+	while (data->rooms)
+	{
+		ROOM->visited_flag = 0;
+		data->rooms = data->rooms->next;
+	}
+	data->rooms = start;
+}
+
 int		find_matrix_len(char **str)
 {
 	int	i;
@@ -28,13 +41,17 @@ void	print_matrix(t_lemin *data)
 	int y;
 	
 	x = 0;
-	printf(YELLOW"room_count: %d\n\n"RESET, data->room_count);
+	printf(YELLOW"\nroom_count: %d\n\n"RESET, data->room_count);
 	while (x < data->room_count)
 	{
 		y = 0;
+		dprintf(2, RED"%d  "RESET, x);
 		while (y < data->room_count)
 		{
-			dprintf(2, YELLOW"%d"RESET, data->matrix[x][y]);
+			if (data->matrix[x][y] == 0)
+				dprintf(2, RED"%d"RESET, data->matrix[x][y]);
+			else
+				dprintf(2, RESET"%d"RESET, data->matrix[x][y]);
 			y++;
 		}
 		ft_putendl_fd("", 2);

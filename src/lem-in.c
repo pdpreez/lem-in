@@ -26,7 +26,10 @@ int main(void)
 		connection_check(&data);
 		data.args = data.args->next;
 	}
+	reset_flags(&data);
+	dprintf(2, "Flag: %d\n", find_room_flag(&data, 2));
 	print_matrix(&data);
+	path_finder(&data);
 	ft_putendl("");
 	return (1);
 }
