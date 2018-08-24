@@ -15,7 +15,22 @@
 void	init_struct(t_lemin *data)
 {
 	data->ants = 0;
+	data->room_count = 0;
 	data->rooms = NULL;
 	data->args = NULL;
 	data->tab = NULL;
+	data->matrix = NULL;
+}
+
+void	init_matrix(t_lemin *data)
+{
+	int	x;
+
+	x = 0;
+	data->matrix = (int **)ft_memalloc(sizeof(int *) * data->room_count);
+	while (x < data->room_count)
+	{
+		data->matrix[x] = (int *)ft_memalloc(sizeof(int) * data->room_count);
+		x++;
+	}
 }

@@ -35,6 +35,7 @@ void	create_table(t_lemin *data)
 
 	start = data->rooms;
 	i = count_rooms(data);
+	data->room_count = i;
 	data->tab = (char **)ft_memalloc(sizeof(char *) * i + 1);
 	data->tab[i] = ft_strnew(0);
 	data->tab[0] = ft_strdup(data->start);
@@ -46,6 +47,8 @@ void	create_table(t_lemin *data)
 		data->rooms = data->rooms->next;
 	}
 	data->tab[i] = ft_strdup(data->end);
+	i++;
+	data->tab[i] = ft_strnew(0);
 	i = 0;
 	while (data->tab[i])
 	{
@@ -54,16 +57,8 @@ void	create_table(t_lemin *data)
 	}
 }
 
-void	create_connections(t_lemin *data)
-{
-	while (is_connection(data))
-	{
-		
-	}
-}
-
 void	create_matrix(t_lemin *data)
 {
 	create_table(data);
-	//create_connections(data);
+	init_matrix(data);
 }

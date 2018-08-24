@@ -42,22 +42,16 @@ int		data_capture(t_lemin *data)
 	t_list	*start;
 
 	start = data->args;
+	if (ant_check(data))
+		//data->args = data->args->next;
 	while (data->args)
 	{
-		if (ant_check(data))
-		{
-			data->args = data->args->next;
-		}
-		while (data->args)
-		{
-			if (start_or_end(data))
-				continue ;
-			is_comment(data);
-			room_check(data);
-			connection_check(data);
-			printf("args: %s\n", (char *)data->args->content);
-			data->args = data->args->next;
-		}
+		if (start_or_end(data))
+			continue ;
+		is_comment(data);
+		room_check(data);
+		//connection_check(data);
+		data->args = data->args->next;
 	}
 	assign_room_num(data);
 	data->args = start;

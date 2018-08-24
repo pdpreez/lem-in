@@ -24,7 +24,27 @@ char	**is_connection(t_lemin *data)
 	return (new);
 }
 
-void	connetion_check(t_lemin *data)
+void	save_connection(t_lemin *data, char **new)
 {
+	int x;
+	int	y;
 	
+	x = 0;
+	y = 0;
+	while (ft_strcmp(data->tab[x], new[0]))
+		x++;
+	while (ft_strcmp(data->tab[y], new[1]))
+		y++;
+	data->matrix[x][y] = 1;
+	data->matrix[y][x] = 1;
+}
+
+void	connection_check(t_lemin *data)
+{
+	char 	**new;
+
+ 	if ((new = is_connection(data)))
+	 {
+	 	save_connection(data, new);
+	 }
 }

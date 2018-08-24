@@ -21,3 +21,23 @@ int		find_matrix_len(char **str)
 		i++;
 	return (i);
 }
+
+void	print_matrix(t_lemin *data)
+{
+	int x;
+	int y;
+	
+	x = 0;
+	printf(YELLOW"room_count: %d\n\n"RESET, data->room_count);
+	while (x < data->room_count)
+	{
+		y = 0;
+		while (y < data->room_count)
+		{
+			dprintf(2, YELLOW"%d"RESET, data->matrix[x][y]);
+			y++;
+		}
+		ft_putendl_fd("", 2);
+		x++;
+	}
+}

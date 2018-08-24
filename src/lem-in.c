@@ -19,13 +19,14 @@ int main(void)
 
 	init_struct(&data);
 	error_handler(&data);
+	create_matrix(&data);
 	while (data.args)
 	{
-		dprintf(2, "%s\n", (char *)data.args->content);
+		dprintf(1, RESET"%s\n", (char *)data.args->content);
+		connection_check(&data);
 		data.args = data.args->next;
 	}
-	ft_putendl("");
-	create_matrix(&data);
+	print_matrix(&data);
 	ft_putendl("");
 	return (1);
 }

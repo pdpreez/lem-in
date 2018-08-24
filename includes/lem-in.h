@@ -22,11 +22,14 @@ typedef struct		s_room
 	char			*name;
 	int				number;
 	int				visited_flag;
+	t_list			*connections;
 }					t_room;
 
 typedef struct		s_lemin
 {
 	int				ants;
+	int				room_count;
+	int				**matrix;
 	char			*start;
 	char			*end;
 	char			**tab;
@@ -47,6 +50,8 @@ void				init_struct(t_lemin *data);
 void				is_comment(t_lemin *data);
 void				assign_room_num(t_lemin *data);
 void				create_matrix(t_lemin *data);
-void				connetion_check(t_lemin *data);
+void				connection_check(t_lemin *data);
+void				init_matrix(t_lemin *data);
+void				print_matrix(t_lemin *data);
 
 #endif
