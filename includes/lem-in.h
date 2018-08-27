@@ -51,6 +51,8 @@ int					find_room_flag(t_lemin *data, int index);
 char				*save_room_name(t_lemin *data);
 char				*room_check(t_lemin *data);
 char				**is_connection(t_lemin *data);
+void				del_room(t_lemin *data);
+void				free_list(t_list *path);
 void				is_shortest_path(t_lemin *data);
 void				path_finder(t_lemin *data);
 void				reset_flags(t_lemin *data);

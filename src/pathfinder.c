@@ -57,7 +57,7 @@ int		find_room_flag(t_lemin *data, int index)
 	return (flag);
 }
 
-void	backtracker(int room, t_lemin *data)
+int		backtracker(int room, t_lemin *data)
 {
 	int conn;
 
@@ -70,17 +70,20 @@ void	backtracker(int room, t_lemin *data)
 		{
 			printf(YELLOW"found end\n"RESET);
 			is_shortest_path(data);
-			return ;
+			return (0);
 		}
 		else if (data->matrix[room][conn] == 1 && !find_room_flag(data, conn))
-		{	
+		{
 			set_room_flag(data, conn, 1);
 			save_path(data, data->tab[conn]);
-			backtracker(conn, data);
+			if (!backtracker(conn, data))
+				return (0);
 			set_room_flag(data, conn, 0);
 		}
 		conn--;
 	}
+	del_room(data);
+	return (1);
 }
 
 
@@ -91,9 +94,12 @@ void	path_finder(t_lemin *data)
 	start = data->curr_path;
 	backtracker(0, data);
 	printf("breaks\n");
-	while (data->short_path)
+	printf("shortest addr: %p\n", data->curr_path);
+	fflush(stdout);
+	while (data->curr_path)
 	{
-		printf("shortest: %s", SHORT_PATH->name);
-		data->short_path = data->short_path->next;
+		printf("shortest: %s\n", CURR_PATH->name);
+		data->curr_path = data->curr_path->next;
 	}
+	printf("Shortest len: %d\n", data->shortest_len);
 }

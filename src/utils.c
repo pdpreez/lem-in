@@ -58,3 +58,17 @@ void	print_matrix(t_lemin *data)
 		x++;
 	}
 }
+
+void	free_list(t_list *path)
+{
+	t_list *temp;
+	t_list *curr;
+
+	curr = path;
+	while (curr)
+	{
+		temp = curr;
+		curr = curr->next;
+		free(temp);
+	}
+}
