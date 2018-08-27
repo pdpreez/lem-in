@@ -69,12 +69,15 @@ int		start_or_end(t_lemin *data)
 {
 	char *str;
 
-	str = (char *)data->args->content;
-	if (!ft_strcmp("##start", str))
-		return (save_start(data));
-	else if (!ft_strcmp("##end", str))
-		return (save_end(data));
-	else if (str[0] == '#' && data->args->next)
-		data->args = data->args->next;
+	if (data && data->args && data->args->content)
+	{
+		str = (char *)data->args->content;
+		if (!ft_strcmp("##start", str))
+			return (save_start(data));
+		else if (!ft_strcmp("##end", str))
+			return (save_end(data));
+		else if (str[0] == '#' && data->args->next)
+			data->args = data->args->next;
+	}
 	return (0);
 }

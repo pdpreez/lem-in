@@ -20,6 +20,8 @@ void	init_struct(t_lemin *data)
 	data->args = NULL;
 	data->tab = NULL;
 	data->matrix = NULL;
+	data->curr_path = NULL;
+	data->short_path = NULL;
 }
 
 void	init_matrix(t_lemin *data)

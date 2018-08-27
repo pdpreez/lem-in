@@ -31,6 +31,8 @@ void	set_room_flag(t_lemin *data, int index, int flag)
 
 	start = data->rooms;
 	name = data->tab[index];
+	if (!ft_strcmp(name, data->end))
+		return ;
 	while (data->rooms && ft_strcmp(ROOM->name, name))
 		data->rooms = data->rooms->next;
 	ROOM->visited_flag = flag;
@@ -47,7 +49,7 @@ int		find_room_flag(t_lemin *data, int index)
 	start = data->rooms;
 	name = data->tab[index];
 	if (!ft_strcmp(name, data->end))
-		return (1);
+		return (0);
 	while (data->rooms && ft_strcmp(ROOM->name, name))
 		data->rooms = data->rooms->next;
 	flag = ROOM->visited_flag;
@@ -55,31 +57,43 @@ int		find_room_flag(t_lemin *data, int index)
 	return (flag);
 }
 
-void	backtracker(int start, t_lemin *data)
+void	backtracker(int room, t_lemin *data)
 {
-	int y;
+	int conn;
 
-	y = data->room_count;
-	printf("room: %s\n", data->tab[start]);
-	while (y > 0)
+	conn = data->room_count;
+	dprintf(2, CYAN"room: %s\n"RESET, data->tab[room]);
+	fflush(stdout);
+	while (conn > 0)
 	{
-		if (!ft_strcmp(data->end, data->tab[start]))
+		if (!ft_strcmp(data->end, data->tab[room]))
 		{
-			printf("found end\n");
-			exit(1) ;
+			printf(YELLOW"found end\n"RESET);
+			is_shortest_path(data);
+			return ;
 		}
-		if (data->matrix[start][y] == 1 && !find_room_flag(data, y))
+		else if (data->matrix[room][conn] == 1 && !find_room_flag(data, conn))
 		{	
-			set_room_flag(data, y, 1);
-			backtracker(y, data);
-			// set_room_flag(data, y, 0);
+			set_room_flag(data, conn, 1);
+			save_path(data, data->tab[conn]);
+			backtracker(conn, data);
+			set_room_flag(data, conn, 0);
 		}
-		y--;
+		conn--;
 	}
 }
 
 
 void	path_finder(t_lemin *data)
 {
+	t_list	*start;
+
+	start = data->curr_path;
 	backtracker(0, data);
+	printf("breaks\n");
+	while (data->short_path)
+	{
+		printf("shortest: %s", SHORT_PATH->name);
+		data->short_path = data->short_path->next;
+	}
 }

@@ -19,7 +19,7 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 
-# define BUFF_SIZE		500
+# define BUFF_SIZE		32
 # define MAXINT			2147483647
 # define MAXINTSTR		"2147483647"
 # define MININT			-2147483648

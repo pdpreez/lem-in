@@ -61,7 +61,5 @@ void	connection_check(t_lemin *data)
 	x = 0;
 	y = 0;
  	if ((new = is_connection(data)))
-	{
 		save_connection(data, new);
-	}
 }
