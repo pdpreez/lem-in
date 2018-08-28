@@ -53,7 +53,7 @@ void	create_table(t_lemin *data)
 	data->rooms = start;
 	while (data->tab[i])
 	{
-		printf(RED"%s\n"RESET, data->tab[i]);
+		//printf(RED"%s\n"RESET, data->tab[i]);
 		i++;
 	}
 }

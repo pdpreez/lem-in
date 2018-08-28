@@ -38,6 +38,7 @@ void	save_path(t_lemin *data, char *room_name)
 	t_list	*temp;
 	t_room	*path;
 
+	//free_list(data->curr_path);
 	start = data->curr_path;
 	path = (t_room *)ft_memalloc(sizeof(t_room));
 	temp = ft_lstnew(path, sizeof(t_room));
@@ -63,8 +64,24 @@ void	save_shortest(t_lemin *data)
 	t_list	*temp;
 	t_room	*path;
 
+	start = data->short_path;
 	free_list(data->short_path);
-	
+	path = (t_room *)ft_memalloc(sizeof(t_room));
+	temp = ft_lstnew(path, sizeof(t_room));
+	if (!data->short_path)
+	{
+		data->short_path = temp;
+		start = data->short_path;
+	}
+	else
+	{
+		while (data->short_path->next)
+			data->short_path = data->short_path->next;
+		ft_lstaddend(&data->short_path, temp);
+		data->short_path = data->short_path->next;
+	}
+	SHORT_PATH->name = ft_strdup(CURR_PATH->name);
+	data->short_path = start;
 }
 
 void	is_shortest_path(t_lemin *data)
@@ -79,10 +96,11 @@ void	is_shortest_path(t_lemin *data)
 		data->curr_path = data->curr_path->next;
 		len++;	
 	}
+	printf("len: %d\n", len);
 	data->curr_path = start;
 	if (len < data->shortest_len)
 	{
-		//printf("shortest: %p\n", data->short_path);
+		printf("is shortest: %p\n", data->short_path);
 		save_shortest(data);
 		data->shortest_len = len;
 	}

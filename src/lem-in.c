@@ -22,13 +22,12 @@ int main(void)
 	create_matrix(&data);
 	while (data.args)
 	{
-		dprintf(1, RESET"%s\n", (char *)data.args->content);
+		//dprintf(1, RESET"%s\n", (char *)data.args->content);
 		connection_check(&data);
 		data.args = data.args->next;
 	}
 	reset_flags(&data);
-	dprintf(2, "Flag: %d\n", find_room_flag(&data, 2));
-	print_matrix(&data);
+	//print_matrix(&data);
 	path_finder(&data);
 	ft_putendl("");
 	return (1);
