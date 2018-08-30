@@ -33,10 +33,14 @@ void	is_comment(t_lemin *data)
 {
 	char *str;
 
-	str = (char *)data->args->content;
-	if (str[0] == '#'
-		&& (ft_strcmp("##start", str) || ft_strcmp("##end", str)))
-		data->args = data->args->next;
+	
+	if (data && data->args && data->args->content)
+	{
+		str = (char *)data->args->content;
+		if (str[0] == '#'
+			&& (ft_strequ(str, "##start") || ft_strequ(str, "##end")))
+			data->args = data->args->next;
+	}
 }
 
 int		save_start(t_lemin *data)
@@ -48,7 +52,7 @@ int		save_start(t_lemin *data)
 	}
 	data->args = data->args->next;
 	data->start = save_room_name(data);
-	data->args = data->args->next;
+	//data->args = data->args->next;
 	return (1);
 }
 
@@ -61,7 +65,7 @@ int		save_end(t_lemin *data)
 	}
 	data->args = data->args->next;
 	data->end = save_room_name(data);
-	data->args = data->args->next;
+	//data->args = data->args->next;
 	return (1);
 }
 
@@ -72,9 +76,9 @@ int		start_or_end(t_lemin *data)
 	if (data && data->args && data->args->content)
 	{
 		str = (char *)data->args->content;
-		if (!ft_strcmp("##start", str))
+		if (!ft_strequ("##start", str))
 			return (save_start(data));
-		else if (!ft_strcmp("##end", str))
+		else if (!ft_strequ("##end", str))
 			return (save_end(data));
 		else if (str[0] == '#' && data->args->next)
 			data->args = data->args->next;

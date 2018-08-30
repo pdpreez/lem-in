@@ -19,7 +19,7 @@ int main(void)
 
 	init_struct(&data);
 	error_handler(&data);
-	create_matrix(&data);
+	create_matrix(&data);/*
 	while (data.args)
 	{
 		//dprintf(1, RESET"%s\n", (char *)data.args->content);
@@ -27,8 +27,8 @@ int main(void)
 		data.args = data.args->next;
 	}
 	reset_flags(&data);
-	//print_matrix(&data);
-	path_finder(&data);
+	// print_matrix(&data);
+	path_finder(&data);*/
 	ft_putendl("");
 	return (1);
 }

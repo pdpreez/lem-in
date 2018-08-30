@@ -39,8 +39,8 @@ int		ant_check(t_lemin *data)
 	}
 	else
 	{
-		ft_debug(1, "Error: Invalid amount of ants", 'R');
-		return (0);
+		ft_debug(1, "Error: Invalid amount of ants\n", 'R');
+		exit (0);
 	}
 	return (1);
 }
@@ -76,7 +76,6 @@ char	*room_check(t_lemin *data)
 
 	i = 0;
 	str = (char *)data->args->content;
-	start_or_end(data);
 	if (is_room(str))
 		save_room_list(data);
 	return (str);

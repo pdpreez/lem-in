@@ -40,18 +40,24 @@ void	save_room_list(t_lemin *data)
 int		data_capture(t_lemin *data)
 {
 	t_list	*start;
+	int		i; //REMOVE
 
+	i = 2;
 	start = data->args;
 	if (ant_check(data))
 		data->args = data->args->next;
 	while (data->args)
 	{
-		if (start_or_end(data))
-			continue ;
-		is_comment(data);
+		//if (start_or_end(data))
+		//	continue ;
+		//is_comment(data);
+		start_or_end(data);
 		room_check(data);
+		dprintf(2, GREEN"seg fault: %d\n"RESET, i++);
+		dprintf(2, CYAN"content: %s\n"RESET, (char *)data->args->content);
 		data->args = data->args->next;
 	}
+	dprintf(2, YELLOW"Exited loop\n"RESET);
 	assign_room_num(data);
 	data->args = start;
 	return (1);

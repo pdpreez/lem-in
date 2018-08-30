@@ -76,13 +76,13 @@ int		backtracker(int room, t_lemin *data)
 		{
 			set_room_flag(data, conn, 1);
 			save_path(data, data->tab[conn]);
-			if (backtracker(conn, data))				
-				return (1);
+			if (backtracker(conn, data))
+				 return (1);
 			set_room_flag(data, conn, 0);
 		}
 		conn--;
 	}
-	//del_room(data);
+	// del_room(data);
 	return (0);
 }
 
@@ -96,6 +96,7 @@ void	path_finder(t_lemin *data)
 	data->shortest_len = data->room_count;
 	printf("breaks\n");
 	printf("shortest addr: %p\n", data->short_path);
+	printf("curr addr: %p\n", data->curr_path);
 	fflush(stdout);
 	while (data->curr_path)
 	{

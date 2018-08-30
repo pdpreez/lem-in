@@ -96,12 +96,14 @@ void	is_shortest_path(t_lemin *data)
 		data->curr_path = data->curr_path->next;
 		len++;	
 	}
-	printf("len: %d\n", len);
+	printf(RED"len: %d\n", len);
+	printf("room_count: %d\n", data->room_count);
+	printf("shortest len: %d\n"RESET, data->shortest_len);
 	data->curr_path = start;
 	if (len < data->shortest_len)
 	{
-		printf("is shortest: %p\n", data->short_path);
-		save_shortest(data);
+		printf(GREEN"is shortest: %p\n"RESET, data->short_path);
 		data->shortest_len = len;
+		save_shortest(data);
 	}
 }
