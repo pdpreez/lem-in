@@ -29,6 +29,8 @@ CCFLAGS = -Wall -Wextra -Werror
 CC = gcc $(CCFLAGS)
 LIBF = $(LIB_PATH)libft.a
 
+MAP ?= farm1.map
+
 all: $(NAME) $(LIBF)
 
 $(NAME): $(OBJ) $(COMPILE)
@@ -51,5 +53,11 @@ fcleanlib:
 	make fclean -C $(LIB_PATH)
 
 re: fclean all
+
+play: all
+	clear
+	@cat $(MAP)
+	@echo "\n"
+	@./$(NAME) < $(MAP)
 
 .PHONY: re fclean clean all

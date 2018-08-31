@@ -52,7 +52,6 @@ int		data_capture(t_lemin *data)
 	}
 	ft_debug(2, "Exited loop\n", 'Y');
 	assign_room_num(data);
-	ft_debug(2, "Seg Fault\n", 'G');
 	data->args = start;
 	return (1);
 }

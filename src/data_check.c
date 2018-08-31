@@ -50,6 +50,8 @@ int		is_room(char *str)
 	int i;
 
 	i = 0;
+	if (ft_strequ("##start", str) || ft_strequ("##end", str))
+		return (0);
 	while (str[i] != ' ' && str[i] != '\0')
 		i++;
 	return (str[i] == ' ');
@@ -75,7 +77,7 @@ char	*room_check(t_lemin *data)
 	char *str;
 
 	i = 0;
-	str = (char *)data->args->content;
+	str = (char *)data->args->content;	
 	if (is_room(str))
 		save_room_list(data);
 	return (str);

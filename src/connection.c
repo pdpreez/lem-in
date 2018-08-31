@@ -44,9 +44,15 @@ void	save_connection(t_lemin *data, char **new)
 	x = 0;
 	y = 0;
 	while (x < data->room_count && !ft_strequ(data->tab[x], new[0]))
+	{
+	//	dprintf(2, RED"data->tab[x]: %s\n"RESET, data->tab[x]);
 		x++;
+	}
 	while (y < data->room_count && !ft_strequ(data->tab[y], new[1]))
+	{
+	//	dprintf(2, YELLOW"data->tab[y]: %s\n"RESET, data->tab[y]);
 		y++;
+	}
 	data->matrix[x][y] = 1;
 	data->matrix[y][x] = 1;
 	clear_start(data);

@@ -22,8 +22,10 @@ int main(void)
 	create_matrix(&data);
 	while (data.args)
 	{
-		dprintf(1, RESET"%s\n", (char *)data.args->content);
+		// dprintf(1, RESET"%s\n", (char *)data.args->content);
+		//ft_debug(2, "seg_fault\n", 'R');
 		connection_check(&data);
+		//ft_debug(2, "seg_fault\n", 'R');
 		data.args = data.args->next;
 	}
 	ft_putendl("");

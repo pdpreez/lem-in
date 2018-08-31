@@ -34,7 +34,7 @@ void	is_comment(t_lemin *data)
 	char *str;
 
 	
-	if (data && data->args && data->args->content)
+	if (data && data->args && data->args->next && data->args->content)
 	{
 		str = (char *)data->args->content;
 		if (str[0] == '#'
@@ -50,12 +50,10 @@ int		save_start(t_lemin *data)
 		ft_debug(2, "Error: Invalid start room", 'R');
 		return (0);
 	}
-	dprintf(2, "start room: %s\n", (char *)data->args->content);
 	data->args = data->args->next;
-	dprintf(2, "start room: %s\n", (char *)data->args->content);
 	data->start = save_room_name(data);
-	dprintf(2, "start room: %s\n", (char *)data->start);
-	data->args = data->args->next;
+	dprintf(2, MAGENTA"start room: %s\n"RESET, (char *)data->start);
+	//data->args = data->args->next;
 	return (1);
 }
 
@@ -66,12 +64,10 @@ int		save_end(t_lemin *data)
 		ft_debug(2, "Error: Invalid end room", 'R');
 		return (0);
 	}
-	dprintf(2, "end room: %s\n", (char *)data->args->content);
 	data->args = data->args->next;
-	dprintf(2, "end room: %s\n", (char *)data->args->content);
 	data->end = save_room_name(data);
-	dprintf(2, "end room: %s\n", (char *)data->end);
-	data->args = data->args->next;
+	dprintf(2, MAGENTA"end room: %s\n"RESET, (char *)data->end);
+	//data->args = data->args->next;
 	return (1);
 }
 
@@ -86,8 +82,8 @@ int		start_or_end(t_lemin *data)
 			return (save_start(data));
 		else if (ft_strequ("##end", str))
 			return (save_end(data));
-		else if (str[0] == '#' && data->args->next)
-			data->args = data->args->next;
+		//else if (str[0] == '#' && data->args->next)
+			//data->args = data->args->next;
 	}
 	return (0);
 }

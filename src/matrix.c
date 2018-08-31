@@ -17,7 +17,7 @@ int		count_rooms(t_lemin *data)
 	int i;
 	t_list *start;
 
-	i = 2;
+	i = 0;
 	start = data->rooms;
 	while (data->rooms)
 	{
@@ -34,20 +34,33 @@ void	create_table(t_lemin *data)
 	t_list *start;
 
 	start = data->rooms;
-	i = count_rooms(data);
-	data->room_count = i;
+	data->room_count = count_rooms(data);
+	i = data->room_count;
 	data->tab = (char **)ft_memalloc(sizeof(char *) * i + 1);
-	data->tab[i] = ft_strnew(0);
 	data->tab[0] = ft_strdup(data->start);
+	dprintf(2, RED"data->start: %s\n"RESET, data->start);
+	dprintf(2, "data->tab[0] = %s\n", data->tab[0]);
 	i = 0;
 	while (data->rooms)
 	{
 		data->tab[i] = ft_strdup(ROOM->name);
+		dprintf(2, YELLOW"data->tab[i]: %s\n"RESET, ROOM->name);
 		i++;
 		data->rooms = data->rooms->next;
 	}
-	data->tab[i] = ft_strdup(data->end);
+	dprintf(2, RED"data->end: %s\n"RESET, data->end);
+	//data->tab[i] = ft_strdup(data->end);
+	dprintf(2, "value of i: %d\n", i);
+	//i++;
+	//data->tab[i] = ft_strnew(0);
 	data->rooms = start;
+	/****/
+	i = 0;
+	while (i < data->room_count)
+	{
+		dprintf(2, GREEN"data->tab[i]: %s\n"RESET, data->tab[i]);
+		i++;
+	}
 }
 
 void	create_matrix(t_lemin *data)
