@@ -38,7 +38,7 @@ void	is_comment(t_lemin *data)
 	{
 		str = (char *)data->args->content;
 		if (str[0] == '#'
-			&& (ft_strequ(str, "##start") || ft_strequ(str, "##end")))
+			&& (!ft_strequ(str, "##start") || !ft_strequ(str, "##end")))
 			data->args = data->args->next;
 	}
 }
@@ -50,9 +50,12 @@ int		save_start(t_lemin *data)
 		ft_debug(2, "Error: Invalid start room", 'R');
 		return (0);
 	}
+	dprintf(2, "start room: %s\n", (char *)data->args->content);
 	data->args = data->args->next;
+	dprintf(2, "start room: %s\n", (char *)data->args->content);
 	data->start = save_room_name(data);
-	//data->args = data->args->next;
+	dprintf(2, "start room: %s\n", (char *)data->start);
+	data->args = data->args->next;
 	return (1);
 }
 
@@ -63,9 +66,12 @@ int		save_end(t_lemin *data)
 		ft_debug(2, "Error: Invalid end room", 'R');
 		return (0);
 	}
+	dprintf(2, "end room: %s\n", (char *)data->args->content);
 	data->args = data->args->next;
+	dprintf(2, "end room: %s\n", (char *)data->args->content);
 	data->end = save_room_name(data);
-	//data->args = data->args->next;
+	dprintf(2, "end room: %s\n", (char *)data->end);
+	data->args = data->args->next;
 	return (1);
 }
 
@@ -76,9 +82,9 @@ int		start_or_end(t_lemin *data)
 	if (data && data->args && data->args->content)
 	{
 		str = (char *)data->args->content;
-		if (!ft_strequ("##start", str))
+		if (ft_strequ("##start", str))
 			return (save_start(data));
-		else if (!ft_strequ("##end", str))
+		else if (ft_strequ("##end", str))
 			return (save_end(data));
 		else if (str[0] == '#' && data->args->next)
 			data->args = data->args->next;

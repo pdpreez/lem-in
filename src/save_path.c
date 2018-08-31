@@ -65,7 +65,7 @@ void	save_shortest(t_lemin *data)
 	t_room	*path;
 
 	start = data->short_path;
-	free_list(data->short_path);
+	// free_list(data->short_path);
 	path = (t_room *)ft_memalloc(sizeof(t_room));
 	temp = ft_lstnew(path, sizeof(t_room));
 	if (!data->short_path)
@@ -78,9 +78,9 @@ void	save_shortest(t_lemin *data)
 		while (data->short_path->next)
 			data->short_path = data->short_path->next;
 		ft_lstaddend(&data->short_path, temp);
-		data->short_path = data->short_path->next;
+		// data->short_path = data->short_path->next;
 	}
-	SHORT_PATH->name = ft_strdup(CURR_PATH->name);
+	// SHORT_PATH->name = ft_strdup(CURR_PATH->name);
 	data->short_path = start;
 }
 

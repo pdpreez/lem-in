@@ -35,25 +35,18 @@ void	create_table(t_lemin *data)
 
 	start = data->rooms;
 	i = count_rooms(data);
-	ft_debug(2, "Count rooms\n", 'R');
 	data->room_count = i;
 	data->tab = (char **)ft_memalloc(sizeof(char *) * i + 1);
 	data->tab[i] = ft_strnew(0);
 	data->tab[0] = ft_strdup(data->start);
-	i = 1;
-	ft_debug(2, "Count rooms\n", 'R');
+	i = 0;
 	while (data->rooms)
 	{
 		data->tab[i] = ft_strdup(ROOM->name);
 		i++;
 		data->rooms = data->rooms->next;
 	}
-	ft_debug(2, "Count rooms\n", 'R');
-	dprintf(2, MAGENTA"data->end: %p\n"RESET, data->end);
 	data->tab[i] = ft_strdup(data->end);
-	ft_debug(2, "Count rooms\n", 'M');
-	i++;
-	data->tab[i] = ft_strnew(0);
 	data->rooms = start;
 }
 
